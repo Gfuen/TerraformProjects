@@ -86,7 +86,7 @@ resource "aws_security_group" "https_security_group" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Open to the world, consider restricting to a specific IP range
+    cidr_blocks = [format("%s/%s",data.external.whatismyip.result["internet_ip"],32)]
   }
 
   # Allow outbound internet access
